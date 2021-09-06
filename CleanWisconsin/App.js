@@ -1,21 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
+// For testing until we have a main welcome screen to navigate, put your file in the app/screens folder and 
+// then uncomment out the lines of code adjusted accordingly to your file names.
+import React from 'react'
+import {View} from 'react-native'
+// import FeatureRequest from "./app/screens/FeatureRequest"
+ 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  // return <FeatureRequest />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
