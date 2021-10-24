@@ -5,6 +5,7 @@ let port = process.env.PORT || 3000;
 const puppeteer = require('puppeteer');
 const cheerio = require('cheerio');
 let url = "https://www.cleanwisconsin.org/news/press-releases/";
+// cache request in the future to speed up the process? 
 //let jsonData = getArticles(); 
 
 async function getArticles() {
@@ -15,6 +16,7 @@ async function getArticles() {
     await page.goto(url);
     // await page.reload();
     
+    // get all links from news release page
     const links = await page.evaluate(
         () => Array.from(
           document.querySelectorAll('.entry-title a'),
@@ -22,7 +24,7 @@ async function getArticles() {
         )
       );
     
-    
+    // helper method to construct array of objects
     const mapData = (titles, bodies) => {
         const data = [];
         for (let i = 0; i < titles.length; i++) {
@@ -36,6 +38,7 @@ async function getArticles() {
 
     let titles = [];
     let bodies = [];
+    // visit all links and collect article title and body
     for (let i = 0; i < links.length; i++) {
         let link = links[i];
         await page.goto(link);
@@ -49,7 +52,9 @@ async function getArticles() {
         bodies.push(body);
     }
 
+    // construct array of object with title and article body
     const data = mapData(titles, bodies);
+    // convert array to json to return
     const jsonData = JSON.stringify(data);
     console.log(jsonData);
     
