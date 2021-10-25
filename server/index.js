@@ -57,7 +57,7 @@ async function getArticles() {
     // convert array to json to return
     const jsonData = JSON.stringify(data);
     console.log(jsonData);
-    
+    return jsonData;
     // browser.close();
 }
 
